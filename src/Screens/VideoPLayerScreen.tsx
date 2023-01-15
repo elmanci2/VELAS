@@ -13,7 +13,9 @@ const VideoPLayerScreen = ({ route }: props) => {
 
   const { video, loading } = use__get__Video__Player(id);
 
-  return <Video_PLayer uri={video} title={title} loadScreen={loading} />;
+  return (
+    <Video_PLayer uri={video} title={title} id={id} loadScreen={loading} />
+  );
 };
 
 export default VideoPLayerScreen;

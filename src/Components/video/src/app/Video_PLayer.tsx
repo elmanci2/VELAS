@@ -5,7 +5,7 @@ import {
   TouchableOpacity,
   View,
 } from "react-native";
-import React, { useEffect, useRef, useState } from "react";
+import React, { useCallback, useEffect, useRef, useState } from "react";
 import { LinearGradient } from "expo-linear-gradient";
 import { Video } from "expo-av";
 import { StatusBar } from "expo-status-bar";
@@ -22,6 +22,7 @@ import { _Props, _statusTYpe } from "../util/Types";
 import { useNavigation } from "@react-navigation/native";
 import Load__Video from "./Load__Video";
 import OnError from "./OnError";
+import { getTime, saveLastTime } from "../../../../db/db";
 
 export default function Video_PLayer({
   uri = "url",
@@ -31,6 +32,7 @@ export default function Video_PLayer({
   loadScreen = true,
   refresh,
   setrefresh,
+  id,
 }: _Props) {
   const [status, setStatus] = useState<_statusTYpe>({} as any);
   const [activeControlls, setActiveControlls] = useState(true);
@@ -71,10 +73,17 @@ export default function Video_PLayer({
 
   const [VideoErro, setVideoErro] = useState(false);
 
-  /*   if (VideoErro) {
-    return <OnError refresh={refresh} setrefresh={setrefresh} />;
+  async function saveTime() {
+    saveLastTime(id, status.positionMillis);
+    navigation.goBack();
   }
- */
+
+  useEffect(() => {
+    getTime(id).then((time: any) => {
+      setPositioSatodo(time[0]?.last_episode ?? 0);
+    });
+  }, []);
+
   if (loadScreen) {
     return <Load__Video />;
   }
@@ -109,10 +118,7 @@ export default function Video_PLayer({
           {activeControlls ? (
             <View style={styles.controlls}>
               {/* Arrow goback an title video  */}
-              <TouchableOpacity
-                onPress={() => navigation.goBack()}
-                style={styles.headerArrow}
-              >
+              <TouchableOpacity onPress={saveTime} style={styles.headerArrow}>
                 <Ionicons
                   name="arrow-back-outline"
                   style={styles.arrow}

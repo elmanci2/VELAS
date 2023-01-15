@@ -120,7 +120,7 @@ const SearchScreen = () => {
 
       {isKeybord || InputValue !== "" ? (
         InputValue === "" ? (
-          <Text style={[styles.text, { color: darck ? "white" : "black" }]}>
+          <Text style={[styles.text, { color: isDarck ? "white" : "black" }]}>
             Que Buscas ?
           </Text>
         ) : (

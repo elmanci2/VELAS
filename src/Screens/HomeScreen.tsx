@@ -65,6 +65,34 @@ const HomeScreen = () => {
               title="novelas de romance"
               data={data}
             />
+
+            <SLiderHorizontal
+              init={400}
+              end={450}
+              title="novelas de romance"
+              data={data}
+            />
+
+            <SLiderHorizontal
+              init={550}
+              end={600}
+              title="novelas de romance"
+              data={data}
+            />
+
+            <SLiderHorizontal
+              init={700}
+              end={750}
+              title="novelas de romance"
+              data={data}
+            />
+
+            <SLiderHorizontal
+              init={800}
+              end={850}
+              title="novelas de romance"
+              data={data}
+            />
           </>
         }
       />

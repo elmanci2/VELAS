@@ -9,6 +9,7 @@ import {
   ViewStyle,
 } from "react-native";
 import { DARCK__COLOR__TEME, LING__COLOR__TEME } from "../../Constants/Colors";
+import { BASE__IMG, notPoster } from "../../Constants/url";
 import { useNavigationTypes } from "../../types/types";
 
 interface item {
@@ -30,9 +31,12 @@ export const EpisodesListItem = ({ item, dark }: item) => {
   const mode = dark ? DARCK__COLOR__TEME.TERCERO : LING__COLOR__TEME.TERCERO;
 
   return (
-    <View  style={[styles.itemConted, { backgroundColor: mode }]}>
+    <View style={[styles.itemConted, { backgroundColor: mode }]}>
       <View style={styles.imgConted}>
-        <Image style={styles.img} source={{ uri: item.poster }} />
+        <Image
+          style={styles.img}
+          source={{ uri: item.poster === notPoster ? BASE__IMG : item.poster }}
+        />
       </View>
       <Text numberOfLines={3} style={[styles.title, { color: darkText }]}>
         {item.title}
@@ -53,7 +57,7 @@ export const RecomendadoRender = ({ item, dark }: item) => {
       <View style={[styles.imgConted]}>
         <Image
           style={[styles.img, { resizeMode: "contain" }]}
-          source={{ uri: item.poster }}
+          source={{ uri: item.poster === notPoster ? BASE__IMG : item.poster }}
         />
       </View>
       <Text numberOfLines={3} style={[styles.title, { color: darkText }]}>

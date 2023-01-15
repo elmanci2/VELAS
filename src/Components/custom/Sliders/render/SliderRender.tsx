@@ -1,11 +1,20 @@
 //import liraries
 import { useNavigation } from "@react-navigation/native";
 import React, { Component } from "react";
-import { View, Text, StyleSheet, TouchableOpacity, Image, ViewStyle, TextStyle } from "react-native";
+import {
+  View,
+  Text,
+  StyleSheet,
+  TouchableOpacity,
+  Image,
+  ViewStyle,
+  TextStyle,
+} from "react-native";
 import {
   DARCK__COLOR__TEME,
   LING__COLOR__TEME,
 } from "../../../../Constants/Colors";
+import { BASE__IMG, notPoster } from "../../../../Constants/url";
 import { useNavigationTypes } from "../../../../types/types";
 import { useDarckStorage } from "../../../../zustand/state/myGlovalState";
 
@@ -15,15 +24,19 @@ interface props {
     title: string;
     id: string;
   };
-  
 
   StylesContainer?: ViewStyle;
-  StylesText?:TextStyle
-  StylesIMgConted?: ViewStyle
+  StylesText?: TextStyle;
+  StylesIMgConted?: ViewStyle;
 }
 
 // create a component
-const SliderRender = ({ item , StylesContainer , StylesText  , StylesIMgConted  }: props) => {
+const SliderRender = ({
+  item,
+  StylesContainer,
+  StylesText,
+  StylesIMgConted,
+}: props) => {
   const navigation = useNavigation<useNavigationTypes>();
 
   const state = useDarckStorage();
@@ -37,15 +50,21 @@ const SliderRender = ({ item , StylesContainer , StylesText  , StylesIMgConted  
       onPress={() =>
         navigation.navigate("previw", {
           id: item.id,
-          poster: item.poster,
+          poster: item.poster === notPoster ? BASE__IMG : item.poster,
         })
       }
-      style={[styles.ContainerAnime , StylesContainer ]}
+      style={[styles.ContainerAnime, StylesContainer]}
     >
-      <View style={[styles.imagenContainer , StylesIMgConted ]}>
-        <Image style={styles.img} source={{ uri: item.poster }} />
+      <View style={[styles.imagenContainer, StylesIMgConted]}>
+        <Image
+          style={styles.img}
+          source={{ uri: item.poster === notPoster ? BASE__IMG : item.poster }}
+        />
       </View>
-      <Text numberOfLines={2} style={[styles.name, { color: mode } ,  StylesText ]}>
+      <Text
+        numberOfLines={2}
+        style={[styles.name, { color: mode }, StylesText]}
+      >
         {item.title}
       </Text>
     </TouchableOpacity>
@@ -71,7 +90,7 @@ const styles = StyleSheet.create({
   },
 
   imagenContainer: {
-    width: '100%',
+    width: "100%",
     height: 178,
   },
   img: {

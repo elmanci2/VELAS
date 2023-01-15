@@ -1,6 +1,8 @@
 
 
 export interface _Props {
+
+    id:string
     uri: string
     title: string
     sizeIConst?: number

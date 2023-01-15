@@ -33,7 +33,7 @@ export const HeaderPreview = ({
             >
               Capitulos:
             </Text>
-            {data?.episodes.length}
+            {data?.episodes?.length ?? 0    }
           </Text>
         </View>
 
