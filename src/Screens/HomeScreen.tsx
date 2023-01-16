@@ -1,6 +1,6 @@
 //import liraries
-import React, { Component, useState } from "react";
-import { View, Text, StyleSheet, FlatList } from "react-native";
+
+import { FlatList } from "react-native";
 import { useQuery } from "react-query";
 import MyScreens from "../Components/body/Screen";
 import HomeMenu from "../Components/home/HomeMenu";
@@ -12,6 +12,8 @@ import SLiderHorizontal from "../Components/custom/Sliders/SliderHorizontal";
 import * as Notifications from "expo-notifications";
 import { useNavigation } from "@react-navigation/native";
 import { useNavigationTypes } from "../types/types";
+
+import { BannerAds } from "../Hook/anuncios/BannerAds";
 
 const HomeScreen = () => {
   const { isDarck } = useDarckStorage((state) => state);
@@ -93,13 +95,13 @@ const HomeScreen = () => {
               title="novelas de romance"
               data={data}
             />
+
+            <BannerAds />
           </>
         }
       />
     </MyScreens>
   );
 };
-
-const styles = StyleSheet.create({});
 
 export default HomeScreen;

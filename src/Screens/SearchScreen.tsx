@@ -24,6 +24,7 @@ import Animated, {
   useSharedValue,
   withTiming,
 } from "react-native-reanimated";
+import { BannerAds } from "../Hook/anuncios/BannerAds";
 
 // create a component
 

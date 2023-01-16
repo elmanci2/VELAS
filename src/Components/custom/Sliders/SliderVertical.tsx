@@ -8,6 +8,7 @@ import {
 } from "react-native";
 import { FlatList } from "react-native-gesture-handler";
 import { DARCK__COLOR__TEME } from "../../../Constants/Colors";
+import { BannerAds } from "../../../Hook/anuncios/BannerAds";
 import { useNavigationTypes } from "../../../types/types";
 import { useDarckStorage } from "../../../zustand/state/myGlovalState";
 import MyScreens from "../../body/Screen";
@@ -53,7 +54,6 @@ const VerticalSlider = ({
   return (
     <MyScreens>
       <FlatList
-  
         ListHeaderComponent={
           recomedate ? (
             <CustomText
@@ -67,16 +67,20 @@ const VerticalSlider = ({
         }
         ListFooterComponent={
           recomedate ? (
-            <TouchableOpacity
-              style={{
-                justifyContent: "center",
-                alignItems: "center",
-                width: "100%",
-              }}
-              onPress={() => navigation.navigate("all")}
-            >
-              <Text style={styles.add}>ver mas </Text>
-            </TouchableOpacity>
+            <>
+              <TouchableOpacity
+                style={{
+                  justifyContent: "center",
+                  alignItems: "center",
+                  width: "100%",
+                }}
+                onPress={() => navigation.navigate("all")}
+              >
+                <Text style={styles.add}>ver mas </Text>
+              </TouchableOpacity>
+
+              <BannerAds />
+            </>
           ) : (
             <></>
           )

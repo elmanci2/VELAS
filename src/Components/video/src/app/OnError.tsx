@@ -3,13 +3,12 @@ import React from "react";
 import { TouchableOpacity } from "react-native-gesture-handler";
 import { StatusBar } from "expo-status-bar";
 
+type props = {
+  refresh?: boolean;
+  setrefresh?: any;
+};
 
-type props ={
-  refresh:boolean
-  setrefresh:any
-}
-
-const OnError = ({refresh ,setrefresh} : props ) => {
+const OnError = ({ refresh, setrefresh }: props) => {
   return (
     <View style={styles.container}>
       <View style={styles.textContainer}>
@@ -22,7 +21,7 @@ const OnError = ({refresh ,setrefresh} : props ) => {
         <Text style={styles.text}>
           ups! Tuvimos un error, inténtalo más tarde.
         </Text>
-{/*         <TouchableOpacity  onPress={() => setrefresh(!refresh) }  >
+        {/*         <TouchableOpacity  onPress={() => setrefresh(!refresh) }  >
           <Text style={styles.reloadText}>recargar</Text>
         </TouchableOpacity> */}
       </View>

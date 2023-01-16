@@ -86,6 +86,8 @@ export default function Video_PLayer({
 
   if (loadScreen) {
     return <Load__Video />;
+  } else if (VideoErro) {
+    return <OnError />;
   }
 
   return (
@@ -138,7 +140,11 @@ export default function Video_PLayer({
                 <View style={styles.PLayPauseBaackControlls}>
                   <TouchableOpacity
                     onPress={() =>
-                      setPositioSatodo(status.positionMillis - 10000)
+                      setPositioSatodo(
+                        status.positionMillis === undefined
+                          ? null
+                          : ((status.positionMillis - 10000) as any)
+                      )
                     }
                   >
                     <MaterialIcons
@@ -194,7 +200,11 @@ export default function Video_PLayer({
 
                   <TouchableOpacity
                     onPress={() =>
-                      setPositioSatodo(status.positionMillis + 10000)
+                      setPositioSatodo(
+                        status.positionMillis === undefined
+                          ? null
+                          : ((status.positionMillis + 10000) as any)
+                      )
                     }
                   >
                     <MaterialIcons

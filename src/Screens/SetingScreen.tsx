@@ -20,6 +20,7 @@ import { DARCK__COLOR__TEME, LING__COLOR__TEME } from "../Constants/Colors";
 import CustomAlert from "../Components/custom/Alert/CustomAlert";
 import { useShare } from "../Hook/UseShare";
 import { clearFavoritesSQLite } from "../db/db";
+import { useAnuncios } from "../Hook/anuncios/useAnuncios";
 
 export default function SetingScreen() {
   const navigate = useNavigation<useNavigationTypes>();
@@ -47,12 +48,22 @@ export default function SetingScreen() {
   //// share fuction
 
   const [openAlert, setOpenAlert] = useState(false);
+  const { interstitial, interstitialLoaded } = useAnuncios();
+
+  const handelAdsNAllNovelas = async () => {
+    if (interstitialLoaded) {
+      await interstitial.show();
+    }
+    await navigate.navigate("all");
+  };
+
 
   //// seting fuctinos
   const routes = (id: number) => {
     switch (id) {
       case 2:
-        navigate.navigate("all");
+        handelAdsNAllNovelas();
+
         break;
       case 3:
         navigate.navigate("Favoritos");

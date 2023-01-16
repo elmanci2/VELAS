@@ -6,6 +6,7 @@ import {
   DARCK__COLOR__TEME,
   LING__COLOR__TEME,
 } from "../../../Constants/Colors";
+import { BannerAds } from "../../../Hook/anuncios/BannerAds";
 import ErrorScreen from "../../../Screens/error/ErrorScreen";
 import LoadScreen from "../../../Screens/util/LoadScreen";
 import { useNavigationTypes } from "../../../types/types";
@@ -44,14 +45,6 @@ const SliderGrid = ({
   StylesText,
   renderError = true,
 }: props) => {
-  const state = useDarckStorage();
-
-  const navigation = useNavigation<useNavigationTypes>();
-
-  const mode = state.isDarck
-    ? DARCK__COLOR__TEME.EXTRAS
-    : LING__COLOR__TEME.EXTRAS;
-
   if (isLoading) {
     return <LoadScreen />;
   } else if (isError && renderError) {
@@ -61,7 +54,8 @@ const SliderGrid = ({
   return (
     <MyScreens>
       <FlatList
-          showsVerticalScrollIndicator={false}
+        ListFooterComponent={data?.length >= 4 ? <BannerAds /> : <></> ?? <></>}
+        showsVerticalScrollIndicator={false}
         ListHeaderComponent={
           isText ? (
             <CustomText

@@ -12,6 +12,7 @@ import { PropsComponetPrevi, useNavigationTypes } from "../../types/types";
 import { useState } from "react";
 import { useFocusEffect, useNavigation } from "@react-navigation/native";
 import { fetchLastEpisode, insertLastEpisode } from "../../db/db";
+import { BannerAds } from "../../Hook/anuncios/BannerAds";
 
 // create a component
 
@@ -30,9 +31,9 @@ const EpisodesLIstPreviw = ({
   const navigation = useNavigation<useNavigationTypes>();
 
   const inforamicion = {
-    id: data.id || null,
-    title: data.title || null,
-    poster: data.poster || null,
+    id: data.id,
+    title: data.title,
+    poster: data.poster,
   };
 
   const ViewEpisodeFuction = async (index: number, item: items) => {
@@ -54,6 +55,7 @@ const EpisodesLIstPreviw = ({
   return (
     <View style={styles.espisodesConted}>
       <FlatList
+        ListFooterComponent={<BannerAds />}
         data={data.episodes}
         renderItem={({ item, index }) => (
           <TouchableOpacity

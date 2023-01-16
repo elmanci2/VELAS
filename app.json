@@ -1,19 +1,10 @@
 {
   "expo": {
-    "plugins": [
-      [
-        "expo-notifications",
-        {
-          "icon": "./assets/vela/logo.png",
-          "color": "#ffffff"
-        }
-      ]
-    ],
     "name": "vela",
     "slug": "vela",
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./assets/vela/icon.png",
+    "icon": "./assets/icono.png",
     "userInterfaceStyle": "light",
     "splash": {
       "image": "./assets/vela/Splashscreen.png",
@@ -30,7 +21,7 @@
     },
     "android": {
       "adaptiveIcon": {
-        "foregroundImage": "./assets/vela/icon.png",
+        "foregroundImage": "./assets/icono.png",
         "backgroundColor": "#FFFFFF"
       },
       "package": "com.elmanci.vela"
@@ -43,5 +34,8 @@
         "projectId": "227be8c0-0c60-4da3-ba76-f6ad5750acf8"
       }
     }
+  },
+  "react-native-google-mobile-ads": {
+    "android_app_id": "ca-app-pub-7618565061438600~3323085538"
   }
 }
