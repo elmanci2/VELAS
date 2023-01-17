@@ -12,6 +12,8 @@ import { Platform } from "react-native";
 import * as Device from "expo-device";
 import { createTable, insertLastEpisode } from "./src/db/db";
 import { BASE__URL } from "./src/Constants/url";
+import { openConditios } from "./src/zustand/state/myStorage";
+import { TerminosAncoditionesHome } from "./src/Components/util/TerminosAndCondition";
 activateKeepAwake();
 
 Notifications.setNotificationHandler({
@@ -25,6 +27,7 @@ Notifications.setNotificationHandler({
 export default function App() {
   const queryClient = new QueryClient();
   const { isDarck } = useDarckStorage((state) => state);
+    const { isCondition } = openConditios();
 
   const [conecte, setConecte] = useState(true);
 
@@ -97,7 +100,13 @@ export default function App() {
     });
   }, []);
 
-  console.log(expoGettoken);
+
+
+
+  if (!isCondition) {
+    return <TerminosAncoditionesHome />;
+  }
+
 
   if (conecte === false) {
     return (

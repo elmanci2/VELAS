@@ -1,4 +1,6 @@
 import create from "zustand";
+import { createJSONStorage, persist } from "zustand/middleware";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 interface FavoritesState {
   favorites: Array<{
@@ -28,11 +30,25 @@ export const useFavorites = create<FavoritesState>((set) => ({
     })),
 }));
 
-//// feching  data state
+/// terminos an condityion storage
+interface terminoAnConditios  {
+  isCondition: boolean;
+  saveAsectConditions: () => void ;
+}
 
-interface FechingIterface {}
-
-export const datataNovelas = create<FechingIterface>((set) => ({
-
-}));
+export const openConditios = create(
+  persist <terminoAnConditios>(
+    (set, get) => ({
+      isCondition: false,
+      saveAsectConditions: () =>
+        set((state: any) => ({
+          isCondition: true,
+        })),
+    }),
+    {
+      name: "conditions",
+      storage: createJSONStorage(() => AsyncStorage),
+    }
+  )
+);
 

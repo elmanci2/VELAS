@@ -11,9 +11,10 @@ import SLiderHorizontal from "../Components/custom/Sliders/SliderHorizontal";
 import { BannerAds } from "../Hook/anuncios/BannerAds";
 import { useEffect, useState } from "react";
 import { getWatchig } from "../db/db";
-import { useNavigation } from "@react-navigation/native";
+import { useFocusEffect, useNavigation } from "@react-navigation/native";
 import { useNavigationTypes } from "../types/types";
 import * as Notifications from "expo-notifications";
+
 
 const HomeScreen = () => {
   const [watching, setWatching] = useState([]);
@@ -31,11 +32,11 @@ const HomeScreen = () => {
     handleNotificationPress
   );
 
-  useEffect(() => {
+  useFocusEffect(() => {
     getWatchig().then((watching: any) => {
       setWatching(watching);
     });
-  }, []);
+  });
 
   const { isDarck } = useDarckStorage((state) => state);
   const { data: Emicion, isLoading: emicionLoading } = useQuery(
@@ -50,6 +51,7 @@ const HomeScreen = () => {
 
   return (
     <MyScreens>
+
       <HomeMenu darck={isDarck} />
       <FlatList
         data={[]}

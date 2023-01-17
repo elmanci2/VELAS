@@ -24,13 +24,19 @@ const VideoPLayerScreen = ({ route }: props) => {
 
   const [loadAds, setLoadAds] = useState(true);
   const [noLoadAds, setNoLoadAds] = useState(true);
+  const [INitial1, setINitial1] = useState(true);
 
   useEffect(() => {
+    if (rewardedInterstitialLoaded && INitial1) {
+      interstitial.show();
+      setINitial1(false);
+    }
+
     if (rewardedInterstitialLoaded && loadAds) {
       setTimeout(async () => {
         await rewardedInterstitial.show();
         setLoadAds(false);
-      }, 300000);
+      }, 400000);
     }
 
     if (loadAds === false && interstitialLoaded && noLoadAds) {
