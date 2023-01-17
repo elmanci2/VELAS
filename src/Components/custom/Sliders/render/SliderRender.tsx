@@ -1,6 +1,5 @@
 //import liraries
 import { useNavigation } from "@react-navigation/native";
-import React, { Component } from "react";
 import {
   View,
   Text,
@@ -85,7 +84,7 @@ const styles = StyleSheet.create({
 
   ContainerAnime: {
     width: 115,
-    margin: 5,
+    margin: 3,
     marginBottom: 5,
   },
 

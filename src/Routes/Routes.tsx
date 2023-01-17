@@ -22,6 +22,7 @@ import ReportError from "../Screens/util/ReportEror";
 import VideoPLayerScreen from "../Screens/VideoPLayerScreen";
 import { useState } from "react";
 import { getFavorites } from "../db/db";
+import { LastWatching } from "../Screens/util/LastWatching";
 
 /// stack navigation
 
@@ -78,6 +79,12 @@ function MyStack() {
         name="videoPLayer"
         options={{ orientation: "landscape" }}
         component={VideoPLayerScreen}
+      />
+
+      <Stack.Screen
+        options={StackScreenOPtiosFuction("Continua Viendo") as any}
+        name="lastWatching"
+        component={LastWatching}
       />
 
       <Stack.Screen name="previw" component={PreviwScreen} />

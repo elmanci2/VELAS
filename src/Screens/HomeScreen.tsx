@@ -1,5 +1,4 @@
 //import liraries
-
 import { FlatList } from "react-native";
 import { useQuery } from "react-query";
 import MyScreens from "../Components/body/Screen";
@@ -9,15 +8,36 @@ import Swiper from "../Components/home/Swiper";
 import { FechingData } from "../Hook/FechingData";
 import LoadScreen from "./util/LoadScreen";
 import SLiderHorizontal from "../Components/custom/Sliders/SliderHorizontal";
-import * as Notifications from "expo-notifications";
+import { BannerAds } from "../Hook/anuncios/BannerAds";
+import { useEffect, useState } from "react";
+import { getWatchig } from "../db/db";
 import { useNavigation } from "@react-navigation/native";
 import { useNavigationTypes } from "../types/types";
-
-import { BannerAds } from "../Hook/anuncios/BannerAds";
+import * as Notifications from "expo-notifications";
 
 const HomeScreen = () => {
-  const { isDarck } = useDarckStorage((state) => state);
+  const [watching, setWatching] = useState([]);
 
+  const navigation = useNavigation<useNavigationTypes>();
+
+  const handleNotificationPress = async (notification: any) => {
+    await navigation.navigate(
+      "previw",
+      await notification.notification.request.content.data
+    );
+  };
+
+  Notifications.addNotificationResponseReceivedListener(
+    handleNotificationPress
+  );
+
+  useEffect(() => {
+    getWatchig().then((watching: any) => {
+      setWatching(watching);
+    });
+  }, []);
+
+  const { isDarck } = useDarckStorage((state) => state);
   const { data: Emicion, isLoading: emicionLoading } = useQuery(
     ["emicion"],
     () => FechingData("/emicion")
@@ -27,17 +47,6 @@ const HomeScreen = () => {
   );
 
   if (emicionLoading || isLoading) return <LoadScreen />;
-  const navigation = useNavigation<useNavigationTypes>();
-
-  const handleNotificationPress = async (notification: any) => {
-    await navigation.navigate(
-      "previw",
-      await notification.notification.request.content.data
-    );
-  };
-  Notifications.addNotificationResponseReceivedListener(
-    handleNotificationPress
-  );
 
   return (
     <MyScreens>
@@ -48,6 +57,15 @@ const HomeScreen = () => {
         ListEmptyComponent={
           <>
             <Swiper data={Emicion} />
+
+            {watching?.length === 0 ? null : (
+              <SLiderHorizontal
+                watching
+                title="continua viendo"
+                data={watching as any}
+              />
+            )}
+
             <SLiderHorizontal title="ultimas novelas agregadas" data={data} />
             <SLiderHorizontal
               init={100}

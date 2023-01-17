@@ -24,23 +24,35 @@ interface props {
 
   init?: number;
   end?: number;
+
+  watching?: boolean;
 }
-const SLiderHorizontal = ({ data, init = 0, end = 50, title }: props) => {
+const SLiderHorizontal = ({
+  data,
+  init = 0,
+  end = 50,
+  title,
+  watching = false,
+}: props) => {
   const navigate = useNavigation<useNavigationTypes>();
 
   return (
     <>
       <View style={styles.textContainer}>
         <CustomText StylesText={styles.CustomText} text={title} />
-        <TouchableOpacity onPress={() => navigate.navigate("all")}>
+        <TouchableOpacity
+          onPress={() => navigate.navigate(watching ? "lastWatching" : "all")}
+        >
           <Text style={styles.text}>ver mas</Text>
         </TouchableOpacity>
       </View>
       <FlatList
         showsHorizontalScrollIndicator={false}
         horizontal
-        data={data?.slice(init, end) ?? []}
-        renderItem={({ item, index }) => <SliderRender item={item} />}
+        data={watching ? data : data?.slice(init, end) ?? []}
+        renderItem={({ item, index }) => (
+          <SliderRender StylesIMgConted={styles.imgCotainer} item={item} />
+        )}
       />
     </>
   );
@@ -48,7 +60,11 @@ const SLiderHorizontal = ({ data, init = 0, end = 50, title }: props) => {
 
 // define your styles
 const styles = StyleSheet.create({
-  container: {},
+  imgCotainer: {
+    width: 113,
+    height: 170,
+    margin: 0,
+  },
 
   CustomText: {
     textTransform: "capitalize",

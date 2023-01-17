@@ -11,7 +11,7 @@ import { DARCK__COLOR__TEME } from "../../Constants/Colors";
 import { PropsComponetPrevi, useNavigationTypes } from "../../types/types";
 import { useState } from "react";
 import { useFocusEffect, useNavigation } from "@react-navigation/native";
-import { fetchLastEpisode, insertLastEpisode } from "../../db/db";
+import { fetchLastEpisode, insertLastEpisode, saveWatching } from "../../db/db";
 import { BannerAds } from "../../Hook/anuncios/BannerAds";
 
 // create a component
@@ -26,17 +26,19 @@ const EpisodesLIstPreviw = ({
   data,
   text,
   setContinua,
+  poster,
 }: PropsComponetPrevi) => {
   const [ViewEpisodes, setViewEpisodes] = useState(Number);
   const navigation = useNavigation<useNavigationTypes>();
 
-  const inforamicion = {
+  const itemWashing = {
     id: data.id,
     title: data.title,
-    poster: data.poster,
+    poster: poster,
   };
 
   const ViewEpisodeFuction = async (index: number, item: items) => {
+    saveWatching(itemWashing as any);
     insertLastEpisode(data.id, index);
     await navigation.navigate("videoPLayer", {
       id: item.id,

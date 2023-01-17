@@ -6,6 +6,7 @@ const dq = SQLite.openDatabase("time.db");
 //// create tabla
 
 export const createTable = () => {
+  /// LAST  TIME
   dq.transaction((tx) => {
     tx.executeSql(
       "CREATE TABLE IF NOT EXISTS lastime (id INTEGER PRIMARY KEY NOT NULL, name TEXT UNIQUE, last_episode INTEGER);",
@@ -14,6 +15,16 @@ export const createTable = () => {
     );
   });
 
+  /// LAS  WATCHING
+  dq.transaction((tx) => {
+    tx.executeSql(
+      "CREATE TABLE IF NOT EXISTS  watching (id  TEXT UNIQUE, name TEXT ,  poster TEXT);",
+      [],
+      (_, result) => {}
+    );
+  });
+
+  /// FAVORITOS
   db.transaction((tx) => {
     tx.executeSql(
       "CREATE TABLE IF NOT EXISTS favorites (id TEXT PRIMARY KEY, title TEXT, poster TEXT);",
@@ -22,6 +33,7 @@ export const createTable = () => {
     );
   });
 
+  //// LAS  EPISODES
   db.transaction((tx) => {
     try {
       tx.executeSql(
@@ -120,6 +132,34 @@ export const getTime = (name: string) => {
       tx.executeSql(
         "SELECT last_episode FROM lastime WHERE name = ?;",
         [name],
+        (_, { rows: { _array } }) => resolve(_array)
+      );
+    });
+  });
+};
+
+/// continua washing
+
+export const saveWatching = (item: {
+  id: string;
+  name: string;
+  poster: string;
+}) => {
+  dq.transaction((tx) => {
+    tx.executeSql(
+      "INSERT OR REPLACE INTO watching (id , name, poster) VALUES (?, ? ,?);",
+      [item.id, item.name, item.poster],
+      (_, result) => {}
+    );
+  });
+};
+
+export const getWatchig = () => {
+  return new Promise((resolve, reject) => {
+    dq.transaction((tx) => {
+      tx.executeSql(
+        "SELECT * FROM watching",
+        [],
         (_, { rows: { _array } }) => resolve(_array)
       );
     });

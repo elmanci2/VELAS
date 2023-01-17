@@ -118,8 +118,7 @@ const PreviwScreen = ({ route, navigation }: props) => {
     return <ErrorScreen refresh={refetch as any} />;
   }
 
-  const  URL = 'https'
-
+  const URL = "https";
 
   /// retunt
   return (
@@ -187,6 +186,7 @@ const PreviwScreen = ({ route, navigation }: props) => {
               text={text}
             />
             <EpisodesLIstPreviw
+              poster={poster}
               data={data}
               text={text}
               setContinua={setContinua}

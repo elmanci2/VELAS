@@ -1,12 +1,10 @@
 import {
   SafeAreaView,
-  Share,
   StyleSheet,
   Text,
   TouchableOpacity,
   View,
   Switch,
-  Alert,
 } from "react-native";
 import React, { useState } from "react";
 
@@ -21,6 +19,8 @@ import CustomAlert from "../Components/custom/Alert/CustomAlert";
 import { useShare } from "../Hook/UseShare";
 import { clearFavoritesSQLite } from "../db/db";
 import { useAnuncios } from "../Hook/anuncios/useAnuncios";
+import { useQuery } from "react-query";
+import { FechingData } from "../Hook/FechingData";
 
 export default function SetingScreen() {
   const navigate = useNavigation<useNavigationTypes>();
@@ -57,6 +57,7 @@ export default function SetingScreen() {
     await navigate.navigate("all");
   };
 
+  const { data } = useQuery(["info"], () => FechingData("/config"));
 
   //// seting fuctinos
   const routes = (id: number) => {
@@ -69,14 +70,12 @@ export default function SetingScreen() {
         navigate.navigate("Favoritos");
         break;
       case 4:
-        useShare(`Hola! Estoy disfrutando de esta increíble app de novelas llamada Vela Novelas. ¡Si te gustan las novelas, definitivamente deberías probarla! Puedes descargarla aquí: https://play.google.com/store/apps/details?id=vela.appxps&hl=es_CO&gl=US
+        useShare(`Hola! Estoy disfrutando de esta increíble app de novelas llamada Vela Novelas. ¡Si te gustan las novelas, definitivamente deberías probarla! Puedes descargarla aquí:${data.app_url}
   `);
 
         break;
       case 5:
-        Linking.openURL(
-          "https://play.google.com/store/apps/details?id=vela.appxps&hl=es"
-        );
+        Linking.openURL(data.app_url);
         break;
       case 6:
         navigate.navigate("error");
@@ -99,12 +98,10 @@ export default function SetingScreen() {
   const setingStrast = (id: number) => {
     switch (id) {
       case 1:
-        Linking.openURL("https://velanovelasapp.blogspot.com/");
+        Linking.openURL(data.web);
         break;
       case 2:
-        Linking.openURL(
-          "https://play.google.com/store/apps/details?id=vela.appxps&hl=es"
-        );
+        Linking.openURL(data.app_url);
         break;
       case 3:
         navigate.navigate("termineAnCondition");
@@ -212,7 +209,7 @@ export default function SetingScreen() {
               color={isDarck ? DARCK__COLOR__TEME.SECONST : "black"}
             />
             <Text style={{ color: isDarck ? "white" : "black" }}>
-              App version 1.0.9
+              App version 1.0.0
             </Text>
           </View>
 

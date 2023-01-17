@@ -23,15 +23,13 @@ import { useNavigation } from "@react-navigation/native";
 import Load__Video from "./Load__Video";
 import OnError from "./OnError";
 import { getTime, saveLastTime } from "../../../../db/db";
+import { useBackHandler } from "@react-native-community/hooks";
 
 export default function Video_PLayer({
   uri = "url",
   title = "title",
   sizeIConst = 40,
-  timePosition,
   loadScreen = true,
-  refresh,
-  setrefresh,
   id,
 }: _Props) {
   const [status, setStatus] = useState<_statusTYpe>({} as any);
@@ -73,10 +71,11 @@ export default function Video_PLayer({
 
   const [VideoErro, setVideoErro] = useState(false);
 
-  async function saveTime() {
+  function saveTime() {
     saveLastTime(id, status.positionMillis);
     navigation.goBack();
   }
+  useBackHandler(() => saveLastTime(id, status.positionMillis) as any);
 
   useEffect(() => {
     getTime(id).then((time: any) => {
