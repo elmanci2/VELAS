@@ -15,7 +15,6 @@ import { useFocusEffect, useNavigation } from "@react-navigation/native";
 import { useNavigationTypes } from "../types/types";
 import * as Notifications from "expo-notifications";
 
-
 const HomeScreen = () => {
   const [watching, setWatching] = useState([]);
 
@@ -32,11 +31,11 @@ const HomeScreen = () => {
     handleNotificationPress
   );
 
-  useFocusEffect(() => {
+  useEffect(() => {
     getWatchig().then((watching: any) => {
       setWatching(watching);
     });
-  });
+  }, []);
 
   const { isDarck } = useDarckStorage((state) => state);
   const { data: Emicion, isLoading: emicionLoading } = useQuery(
@@ -51,7 +50,6 @@ const HomeScreen = () => {
 
   return (
     <MyScreens>
-
       <HomeMenu darck={isDarck} />
       <FlatList
         data={[]}
@@ -64,7 +62,7 @@ const HomeScreen = () => {
               <SLiderHorizontal
                 watching
                 title="continua viendo"
-                data={watching as any}
+                data={watching.reverse() as any}
               />
             )}
 
@@ -105,13 +103,6 @@ const HomeScreen = () => {
             <SLiderHorizontal
               init={700}
               end={750}
-              title="novelas de romance"
-              data={data}
-            />
-
-            <SLiderHorizontal
-              init={800}
-              end={850}
               title="novelas de romance"
               data={data}
             />

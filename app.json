@@ -1,8 +1,8 @@
 {
   "expo": {
-    "name": "vela",
-    "slug": "vela",
-    "version": "1.0.0",
+    "name": "vela novelas",
+    "slug": "velanovelasv2",
+    "version": "1.0.2",
     "orientation": "portrait",
     "icon": "./assets/icono.png",
     "userInterfaceStyle": "light",
@@ -10,10 +10,6 @@
       "image": "./assets/vela/Splashscreen.png",
       "resizeMode": "contain",
       "backgroundColor": "#ffffff"
-    },
-    "updates": {
-      "fallbackToCacheTimeout": 0,
-      "url": "https://u.expo.dev/227be8c0-0c60-4da3-ba76-f6ad5750acf8"
     },
     "assetBundlePatterns": [
       "**/*"
@@ -26,18 +22,21 @@
         "foregroundImage": "./assets/icono.png",
         "backgroundColor": "#FFFFFF"
       },
-      "package": "com.elmanci.vela"
+      "package": "com.elmanci.velanovelasv2"
     },
     "web": {
       "favicon": "./assets/vela/logo.png"
     },
     "extra": {
       "eas": {
-        "projectId": "227be8c0-0c60-4da3-ba76-f6ad5750acf8"
+        "projectId": "fa0d0168-3d18-437d-a156-332d0dca6687"
       }
+    },
+    "updates": {
+      "url": "https://u.expo.dev/fa0d0168-3d18-437d-a156-332d0dca6687"
     }
   },
   "react-native-google-mobile-ads": {
-    "android_app_id": "ca-app-pub-7618565061438600~3323085538"
+    "android_app_id": "ca-app-pub-7618565061438600~7594911223"
   }
 }

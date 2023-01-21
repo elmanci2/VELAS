@@ -17,8 +17,8 @@ export const use__get__Video__Player = (id: string) => {
         const lola = await data.text();
         const $ = cheerio.load(lola);
 
-        const script = $(" #container > script:nth-child(8)").html();
-
+        const script = $("#video-content > div.center > script:nth-child(4)").html();
+        
         const datas = script
             .split("preload: 'auto',")[0]
             .toString()

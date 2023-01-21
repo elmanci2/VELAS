@@ -49,7 +49,7 @@ const EpisodesLIstPreviw = ({
   useFocusEffect(() => {
     fetchLastEpisode(data.id).then((episode: any) => {
       setContinua && setContinua(episode[0]?.last_episode ?? 0);
-      setViewEpisodes(episode[0]?.last_episode ?? 0);
+      setViewEpisodes(episode[0]?.last_episode ?? null );
       ///   add whashin g
     });
   });
@@ -70,7 +70,7 @@ const EpisodesLIstPreviw = ({
 
               <View style={styles.iconEpisodesBox}>
                 <FontAwesome name="play-circle" size={34} color="white" />
-                {ViewEpisodes === 0 ? null : ViewEpisodes >= index ? (
+                {ViewEpisodes >= index ? (
                   <View style={styles.episodesBufer} />
                 ) : null}
               </View>

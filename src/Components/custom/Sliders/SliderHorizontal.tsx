@@ -10,6 +10,7 @@ import SliderRender from "./render/SliderRender";
 import { DARCK__COLOR__TEME } from "../../../Constants/Colors";
 import { useNavigation } from "@react-navigation/native";
 import { useNavigationTypes } from "../../../types/types";
+import { useAnuncios } from "../../../Hook/anuncios/useAnuncios";
 
 interface props {
   data: [
@@ -36,13 +37,20 @@ const SLiderHorizontal = ({
 }: props) => {
   const navigate = useNavigation<useNavigationTypes>();
 
+  const { interstitialLoaded, interstitial } = useAnuncios();
+
+  const navigateAllScreen = async () => {
+    if (interstitialLoaded) {
+      await interstitial.show();
+    }
+    await navigate.navigate(watching ? "lastWatching" : "all");
+  };
+
   return (
     <>
       <View style={styles.textContainer}>
         <CustomText StylesText={styles.CustomText} text={title} />
-        <TouchableOpacity
-          onPress={() => navigate.navigate(watching ? "lastWatching" : "all")}
-        >
+        <TouchableOpacity onPress={navigateAllScreen}>
           <Text style={styles.text}>ver mas</Text>
         </TouchableOpacity>
       </View>

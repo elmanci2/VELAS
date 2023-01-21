@@ -14,6 +14,7 @@ const VideoPLayerScreen = ({ route }: props) => {
   const { id, title } = route.params;
 
   const { video, loading } = use__get__Video__Player(id);
+
   /// use ads
   const {
     interstitial,
@@ -26,28 +27,28 @@ const VideoPLayerScreen = ({ route }: props) => {
   const [noLoadAds, setNoLoadAds] = useState(true);
   const [INitial1, setINitial1] = useState(true);
 
+  console.log([loadAds, interstitialLoaded, noLoadAds, INitial1]);
+
   useEffect(() => {
-    if (rewardedInterstitialLoaded && INitial1) {
-      interstitial.show();
+    if (interstitialLoaded && INitial1) {
       setINitial1(false);
+      interstitial.show();
     }
 
     if (rewardedInterstitialLoaded && loadAds) {
       setTimeout(async () => {
-        await rewardedInterstitial.show();
         setLoadAds(false);
+        await rewardedInterstitial.show();
       }, 400000);
     }
 
     if (loadAds === false && interstitialLoaded && noLoadAds) {
       setTimeout(async () => {
-        await interstitial.show();
         setNoLoadAds(false);
+        await interstitial.show();
       }, 1200000);
     }
   }, [interstitialLoaded, rewardedInterstitialLoaded]);
-
-  console.log([interstitialLoaded, loadAds]);
 
   return (
     <Video_PLayer uri={video} title={title} id={id} loadScreen={loading} />
