@@ -8,10 +8,9 @@ import Swiper from "../Components/home/Swiper";
 import { FechingData } from "../Hook/FechingData";
 import LoadScreen from "./util/LoadScreen";
 import SLiderHorizontal from "../Components/custom/Sliders/SliderHorizontal";
-import { BannerAds } from "../Hook/anuncios/BannerAds";
 import { useEffect, useState } from "react";
 import { getWatchig } from "../db/db";
-import { useFocusEffect, useNavigation } from "@react-navigation/native";
+import { useNavigation } from "@react-navigation/native";
 import { useNavigationTypes } from "../types/types";
 import * as Notifications from "expo-notifications";
 
@@ -42,8 +41,8 @@ const HomeScreen = () => {
     ["emicion"],
     () => FechingData("/emicion")
   );
-  const { data, isLoading } = useQuery(["novelas"], () =>
-    FechingData("/novelas")
+  const { data, isLoading } = useQuery(["generos"], () =>
+    FechingData("/generos")
   );
 
   if (emicionLoading || isLoading) return <LoadScreen />;
@@ -57,7 +56,6 @@ const HomeScreen = () => {
         ListEmptyComponent={
           <>
             <Swiper data={Emicion} />
-
             {watching?.length === 0 ? null : (
               <SLiderHorizontal
                 watching
@@ -65,49 +63,33 @@ const HomeScreen = () => {
                 data={watching.reverse() as any}
               />
             )}
-
-            <SLiderHorizontal title="ultimas novelas agregadas" data={data} />
             <SLiderHorizontal
-              init={100}
-              end={150}
-              title="novelas mas vistas"
-              data={data}
+              title="Recomendado para ti"
+              data={data[0]?.generos1 ?? []}
             />
             <SLiderHorizontal
-              init={170}
-              end={230}
-              title="recomendadas para ti"
-              data={data}
-            />
-            <SLiderHorizontal
-              init={350}
-              end={400}
-              title="novelas de romance"
-              data={data}
+              title="más populares hoy "
+              data={data[1]?.generos2 ?? []}
             />
 
             <SLiderHorizontal
-              init={400}
-              end={450}
-              title="novelas de romance"
-              data={data}
+              title="novelas para ver en familia "
+              data={data[2]?.generos3 ?? []}
+            />
+            <SLiderHorizontal
+              title="Clásicos inolvidables"
+              data={data[3]?.generos4 ?? []}
             />
 
             <SLiderHorizontal
-              init={550}
-              end={600}
-              title="novelas de romance"
-              data={data}
+              title="Novelas para matonear "
+              data={data[5]?.generos6 ?? []}
             />
 
             <SLiderHorizontal
-              init={700}
-              end={750}
-              title="novelas de romance"
-              data={data}
+              title="Recién actualizadas "
+              data={data[7]?.generos8 ?? []}
             />
-
-            <BannerAds />
           </>
         }
       />

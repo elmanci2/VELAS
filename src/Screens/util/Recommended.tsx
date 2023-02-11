@@ -15,26 +15,11 @@ interface Novel {
 
 // create a component
 const Recommended = () => {
-  const { data, isLoading, refetch } = useQuery("novelas", () =>
-    FechingData("/novelas")
+  const { data, isLoading, refetch } = useQuery(["recomed"], () =>
+    FechingData("/recomed")
   );
 
-  const [random50, setRandom50] = useState<Novel[]>([]);
-
-  useEffect(() => {
-    if (data && !isLoading) {
-      let randomElements = [] as any;
-      while (randomElements.length !== 50) {
-        const randomIndex = Math.floor(
-          Math.random() * data.slice(0, 500).length
-        );
-        if (!randomElements.includes(data[randomIndex])) {
-          randomElements.push(data[randomIndex]);
-        }
-      }
-      setRandom50(randomElements);
-    }
-  }, [data, isLoading]);
+ 
 
   if (isLoading) {
     return <LoadScreen />;
@@ -43,7 +28,7 @@ const Recommended = () => {
   return (
     <VerticalSlider
       recomedate
-      data={random50 as any}
+      data={data}
       refresh={refetch}
       isLoading={isLoading}
     />

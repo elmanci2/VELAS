@@ -102,10 +102,9 @@ export default function App() {
 
 
 
+  console.log(expoGettoken);
+  
 
-  if (!isCondition) {
-    return <TerminosAncoditionesHome />;
-  }
 
 
   if (conecte === false) {
@@ -115,6 +114,10 @@ export default function App() {
         <NetworError />
       </>
     );
+  }
+
+  if (!isCondition) {
+    return <TerminosAncoditionesHome />;
   }
 
   return (

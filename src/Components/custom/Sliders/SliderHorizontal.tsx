@@ -23,15 +23,11 @@ interface props {
 
   title: string;
 
-  init?: number;
-  end?: number;
-
   watching?: boolean;
 }
 const SLiderHorizontal = ({
   data,
-  init = 0,
-  end = 50,
+
   title,
   watching = false,
 }: props) => {
@@ -57,7 +53,7 @@ const SLiderHorizontal = ({
       <FlatList
         showsHorizontalScrollIndicator={false}
         horizontal
-        data={watching ? data : data?.slice(init, end) ?? []}
+        data={data}
         renderItem={({ item, index }) => (
           <SliderRender StylesIMgConted={styles.imgCotainer} item={item} />
         )}

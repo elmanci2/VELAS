@@ -27,7 +27,7 @@ const VideoPLayerScreen = ({ route }: props) => {
   const [noLoadAds, setNoLoadAds] = useState(true);
   const [INitial1, setINitial1] = useState(true);
 
-  console.log([loadAds, interstitialLoaded, noLoadAds, INitial1]);
+  
 
   useEffect(() => {
     if (interstitialLoaded && INitial1) {

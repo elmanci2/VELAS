@@ -14,6 +14,7 @@ import {
   LING__COLOR__TEME,
 } from "../../../../Constants/Colors";
 import { BASE__IMG, notPoster } from "../../../../Constants/url";
+import { useAnuncios } from "../../../../Hook/anuncios/useAnuncios";
 import { useNavigationTypes } from "../../../../types/types";
 import { useDarckStorage } from "../../../../zustand/state/myGlovalState";
 
@@ -44,14 +45,21 @@ const SliderRender = ({
     ? DARCK__COLOR__TEME.EXTRAS
     : LING__COLOR__TEME.EXTRAS;
 
+  const { interstitialLoaded, interstitial } = useAnuncios();
+
+  const openAdds = async () => {
+    if (!interstitialLoaded) {
+
+    }      interstitial.show();
+    navigation.navigate("previw", {
+      id: item.id,
+      poster: item.poster === notPoster ? BASE__IMG : item.poster,
+    });
+  }; ///  navigato ad adds
+
   return (
     <TouchableOpacity
-      onPress={() =>
-        navigation.navigate("previw", {
-          id: item.id,
-          poster: item.poster === notPoster ? BASE__IMG : item.poster,
-        })
-      }
+      onPress={openAdds}
       style={[styles.ContainerAnime, StylesContainer]}
     >
       <View style={[styles.imagenContainer, StylesIMgConted]}>
@@ -64,7 +72,7 @@ const SliderRender = ({
         numberOfLines={2}
         style={[styles.name, { color: mode }, StylesText]}
       >
-        {item.title}
+        {item?.title ?? ''} 
       </Text>
     </TouchableOpacity>
   );

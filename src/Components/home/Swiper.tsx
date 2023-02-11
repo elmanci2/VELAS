@@ -10,6 +10,7 @@ import {
 } from "react-native";
 import { SwiperFlatList } from "react-native-swiper-flatlist";
 import { DARCK__COLOR__TEME } from "../../Constants/Colors";
+import { useAnuncios } from "../../Hook/anuncios/useAnuncios";
 import { useNavigationTypes } from "../../types/types";
 
 interface props {
@@ -27,6 +28,14 @@ interface props {
 const Swiper = ({ data }: props) => {
   const navigate = useNavigation<useNavigationTypes>();
 
+   const   { interstitialLoaded ,  interstitial }   =  useAnuncios()
+  const  loadAds  =  async (item : any  ) =>  {
+     await  navigate.navigate("previw", { id: item.id, poster: item.poster })
+     if (!interstitialLoaded) {
+      interstitial.show()
+     }
+  }
+ 
   return (
     <View style={styles.container}>
       <SwiperFlatList
@@ -42,7 +51,7 @@ const Swiper = ({ data }: props) => {
         renderItem={({ item }) => (
           <TouchableOpacity
             onPress={() =>
-              navigate.navigate("previw", { id: item.id, poster: item.poster })
+              loadAds(item)
             }
             style={[styles.child, { backgroundColor: item }]}
           >

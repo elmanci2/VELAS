@@ -71,16 +71,19 @@ export default function Video_PLayer({
 
   const [VideoErro, setVideoErro] = useState(false);
 
-  function saveTime() {
+ function saveTime() {
     saveLastTime(id, status.positionMillis);
     navigation.goBack();
   }
   useBackHandler(() => saveLastTime(id, status.positionMillis) as any);
 
   useEffect(() => {
+    ////  get las time 
     getTime(id).then((time: any) => {
       setPositioSatodo(time[0]?.last_episode ?? 0);
     });
+ 
+
   }, []);
 
   if (loadScreen) {
@@ -119,7 +122,7 @@ export default function Video_PLayer({
           {activeControlls ? (
             <View style={styles.controlls}>
               {/* Arrow goback an title video  */}
-              <TouchableOpacity onPress={saveTime} style={styles.headerArrow}>
+              <TouchableOpacity onPress={ saveTime } style={styles.headerArrow}>
                 <Ionicons
                   name="arrow-back-outline"
                   style={styles.arrow}
