@@ -89,7 +89,7 @@ export const HeaderPreview = ({
           <Text style={{ fontWeight: "600", color: text }}>
             Continua:
             <Text style={{ color: DARCK__COLOR__TEME.SECONST }}>
-              {Continua ? (Continua === 0 ? 1 : Continua + 2) : 0}
+              {Continua ? (Continua === 0 || null ? 1 : Continua + 2) : 1}
             </Text>
           </Text>
         </View>

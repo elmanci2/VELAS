@@ -26,8 +26,7 @@ interface props {
   ];
 }
 
-// create a component
-const SliderGrid = ({
+export default function AllnovelasGrid({
   data,
   refrech,
   isLoading,
@@ -37,17 +36,17 @@ const SliderGrid = ({
   isText = false,
   StylesText,
   renderError = true,
-}: props) => {
+}: props) {
   if (isLoading) {
     return <LoadScreen />;
   } else if (isError && renderError) {
     return <ErrorScreen refresh={refrech} />;
   }
 
- 
   return (
     <MyScreens>
-      <FlatList
+      <FlashList
+        estimatedItemSize={100}
         ListFooterComponent={data?.length >= 4 ? <BannerAds /> : <></> ?? <></>}
         showsVerticalScrollIndicator={false}
         ListHeaderComponent={
@@ -71,14 +70,13 @@ const SliderGrid = ({
           marginTop: 10,
         }}
         contentContainerStyle={{ paddingBottom: 100 }}
-
         data={data}
         keyExtractor={(item) => item.id}
         renderItem={({ item, index }) => <SliderRender item={item} />}
       />
     </MyScreens>
   );
-};
+}
 
 // define your styles
 const styles = StyleSheet.create({
@@ -115,7 +113,3 @@ const styles = StyleSheet.create({
     color: "#fff",
   },
 });
-
-
-
-export default SliderGrid;

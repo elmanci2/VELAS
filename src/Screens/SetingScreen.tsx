@@ -51,7 +51,7 @@ export default function SetingScreen() {
   const { interstitial, interstitialLoaded } = useAnuncios();
 
   const handelAdsNAllNovelas = async () => {
-    if (interstitialLoaded) {
+    if (!interstitialLoaded) {
       await interstitial.show();
     }
     await navigate.navigate("all");
@@ -209,7 +209,7 @@ export default function SetingScreen() {
               color={isDarck ? DARCK__COLOR__TEME.SECONST : "black"}
             />
             <Text style={{ color: isDarck ? "white" : "black" }}>
-              App version 1.0.0
+              App version 1.3.0
             </Text>
           </View>
 

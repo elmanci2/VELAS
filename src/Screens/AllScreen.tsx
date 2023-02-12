@@ -3,9 +3,9 @@ import React from "react";
 import { View, Text, StyleSheet } from "react-native";
 import { useQuery } from "react-query";
 import MyScreens from "../Components/body/Screen";
-import SliderGrid from "../Components/custom/Sliders/SliderGrid";
 import { FechingData } from "../Hook/FechingData";
 import Constants  from "expo-constants";
+import AllnovelasGrid from "../Components/custom/Sliders/AllnovelasGrid";
 
 // create a component
 const AllScreen = () => {
@@ -15,7 +15,7 @@ const AllScreen = () => {
 
   return (
     <MyScreens>
-      <SliderGrid
+      <AllnovelasGrid
       StylesText={styles.StylesText}
         data={data}
         isLoading={isLoading}

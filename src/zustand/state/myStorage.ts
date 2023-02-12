@@ -39,10 +39,10 @@ interface terminoAnConditios  {
 export const openConditios = create(
   persist <terminoAnConditios>(
     (set, get) => ({
-      isCondition: false,
+      isCondition: true,
       saveAsectConditions: () =>
         set((state: any) => ({
-          isCondition: true,
+          isCondition: false,
         })),
     }),
     {

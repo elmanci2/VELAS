@@ -18,7 +18,7 @@ export const LastWatching = () => {
         isLoading={false}
         isError={false}
         refrech={() => null}
-        data={watching as any}
+        data={watching.reverse() as any}
       />
     </MyScreens>
   );

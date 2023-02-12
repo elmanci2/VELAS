@@ -33,7 +33,7 @@ const LovesScreen = ({ navigation }: { navigation: any }) => {
           isError={false}
           isLoading={false}
           refrech={() => null}
-          data={favoriteList as any}
+          data={favoriteList.reverse() as any}
         />
       )}
     </MyScreens>

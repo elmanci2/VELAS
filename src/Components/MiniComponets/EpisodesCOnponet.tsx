@@ -8,6 +8,7 @@ import {
   Image,
   ViewStyle,
 } from "react-native";
+import FastImage from "react-native-fast-image";
 import { DARCK__COLOR__TEME, LING__COLOR__TEME } from "../../Constants/Colors";
 import { BASE__IMG, notPoster } from "../../Constants/url";
 import { useNavigationTypes } from "../../types/types";
@@ -33,7 +34,7 @@ export const EpisodesListItem = ({ item, dark }: item) => {
   return (
     <View style={[styles.itemConted, { backgroundColor: mode }]}>
       <View style={styles.imgConted}>
-        <Image
+        <FastImage
           style={styles.img}
           source={{ uri: item.poster === notPoster ? BASE__IMG : item.poster }}
         />
@@ -55,8 +56,9 @@ export const RecomendadoRender = ({ item, dark }: item) => {
   return (
     <View key={item.id} style={[styles.itemConted]}>
       <View style={[styles.imgConted]}>
-        <Image
-          style={[styles.img, { resizeMode: "contain" }]}
+        <FastImage
+          resizeMode={FastImage.resizeMode.cover}
+          style={[styles.img]}
           source={{ uri: item.poster === notPoster ? BASE__IMG : item.poster }}
         />
       </View>
@@ -89,7 +91,7 @@ const styles = StyleSheet.create({
     marginBottom: 10,
     flexDirection: "row",
     alignItems: "center",
-    paddingHorizontal:10,
+    paddingHorizontal: 10,
     width: "100%",
     borderRadius: 6,
     overflow: "hidden",

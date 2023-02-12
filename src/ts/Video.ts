@@ -1,4 +1,6 @@
 import { useEffect, useState } from "react";
+import { useQuery } from "react-query";
+import useAddsId from "../Hook/anuncios/addsId/useAddsId";
 
 const cheerio = require("react-native-cheerio");
 
@@ -9,27 +11,23 @@ export const use__get__Video__Player = (id: string) => {
 
   const [video, setvideo] = useState("");
   const [loading, setLoading] = useState(false);
-  const [videoScipt, setVideoScipt] = useState(1);
+
+  const { losDatos, refetch } = useAddsId("/scriptNumber", "scriptNumber");
 
   const body = async () => {
     setLoading(true);
+
     const data = await fetch(`https://www.ennovelas.com/${id}`);
     const lola = await data.text();
     const $ = cheerio.load(lola);
 
-    const script = $(`#container > script:nth-child(${7})`).html();
+    const script = $(
+      losDatos?.selector ??
+        `#container > script:nth-child(${losDatos?.number ?? 7})`
+    ).html();
 
-   
 
-    ///  check is scrit correct
-    if (script == null  || undefined   ) {
-      setVideoScipt(videoScipt + 1);
-      console.log(videoScipt);
-    
-    } else {
-
-        console.log('video is ratin player ');
-        
+    if (losDatos !== null || undefined) {
       const datas = script
         .split("preload: 'auto',")[0]
         .toString()
@@ -54,8 +52,9 @@ export const use__get__Video__Player = (id: string) => {
         .replace('"', "");
 
       setvideo(link);
-
       setLoading(false);
+
+      
     }
   };
 

@@ -19,15 +19,12 @@ const VideoPLayerScreen = ({ route }: props) => {
   const {
     interstitial,
     interstitialLoaded,
-    rewardedInterstitial,
-    rewardedInterstitialLoaded,
+
   } = useAnuncios();
 
   const [loadAds, setLoadAds] = useState(true);
   const [noLoadAds, setNoLoadAds] = useState(true);
   const [INitial1, setINitial1] = useState(true);
-
-  
 
   useEffect(() => {
     if (interstitialLoaded && INitial1) {
@@ -35,10 +32,10 @@ const VideoPLayerScreen = ({ route }: props) => {
       interstitial.show();
     }
 
-    if (rewardedInterstitialLoaded && loadAds) {
+    if (interstitialLoaded && loadAds) {
       setTimeout(async () => {
         setLoadAds(false);
-        await rewardedInterstitial.show();
+        await interstitial.show();
       }, 400000);
     }
 
@@ -48,7 +45,7 @@ const VideoPLayerScreen = ({ route }: props) => {
         await interstitial.show();
       }, 1200000);
     }
-  }, [interstitialLoaded, rewardedInterstitialLoaded]);
+  }, [interstitialLoaded]);
 
   return (
     <Video_PLayer uri={video} title={title} id={id} loadScreen={loading} />

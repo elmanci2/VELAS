@@ -4,6 +4,7 @@
     "slug": "velanovelasv2",
     "version": "1.0.2",
     "orientation": "portrait",
+    "versionCode": 3,
     "icon": "./assets/icono.png",
     "userInterfaceStyle": "light",
     "splash": {
@@ -34,6 +35,9 @@
     },
     "updates": {
       "url": "https://u.expo.dev/fa0d0168-3d18-437d-a156-332d0dca6687"
+    },
+    "runtimeVersion": {
+      "policy": "appVersion"
     }
   },
   "react-native-google-mobile-ads": {

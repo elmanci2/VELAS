@@ -1,6 +1,5 @@
 import { useState, useEffect } from "react";
 import {
-  TestIds,
   InterstitialAd,
   AdEventType,
   RewardedInterstitialAd,
@@ -8,10 +7,11 @@ import {
 } from "react-native-google-mobile-ads";
 import { INTERSTITIAL_ID, REWARDED_ID } from "../../Constants/ads";
 
+
+ //// initialize    adds 
 const interstitial = InterstitialAd.createForAdRequest(INTERSTITIAL_ID, {
   requestNonPersonalizedAdsOnly: true,
 });
-
 
 const rewardedInterstitial = RewardedInterstitialAd.createForAdRequest(
   REWARDED_ID,
@@ -21,6 +21,7 @@ const rewardedInterstitial = RewardedInterstitialAd.createForAdRequest(
 );
 
 export const useAnuncios = () => {
+  /// configuere ads
   const [interstitialLoaded, setInterstitialLoaded] = useState(false);
   const [rewardedInterstitialLoaded, setRewardedInterstitialLoaded] =
     useState(false);
@@ -50,8 +51,6 @@ export const useAnuncios = () => {
     };
   };
 
-
-  
   /// raworde
   const loadRewardedInterstitial = () => {
     const unsubscribeLoaded = rewardedInterstitial.addAdEventListener(

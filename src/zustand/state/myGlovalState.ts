@@ -10,7 +10,7 @@ interface prosp {
 export const useDarckStorage = create(
   persist<prosp>(
     (set, get) => ({
-      isDarck: false,
+      isDarck: true,
       changeMode: () =>
         set((state: any) => ({
           isDarck: !state.isDarck,

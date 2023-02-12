@@ -1,12 +1,15 @@
 //import liraries
 import { useNavigation } from "@react-navigation/native";
+import { FlashList } from "@shopify/flash-list";
 import {
+  FlatList,
   RefreshControl,
   StyleSheet,
   Text,
   TouchableOpacity,
 } from "react-native";
-import { FlatList } from "react-native-gesture-handler";
+
+
 import { DARCK__COLOR__TEME } from "../../../Constants/Colors";
 import { BannerAds } from "../../../Hook/anuncios/BannerAds";
 import { useAnuncios } from "../../../Hook/anuncios/useAnuncios";
@@ -18,6 +21,7 @@ import {
   RecomendadoRender,
 } from "../../MiniComponets/EpisodesCOnponet";
 import CustomText from "../Titles/CustomTitle";
+
 
 interface props {
   data: [
@@ -62,10 +66,11 @@ const VerticalSlider = ({
     }
 
   };
-
+ 
   return (
     <MyScreens>
       <FlatList
+
         ListHeaderComponent={
           recomedate ? (
             <CustomText

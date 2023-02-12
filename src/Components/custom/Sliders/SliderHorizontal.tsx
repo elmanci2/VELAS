@@ -1,9 +1,10 @@
 import {
   StyleSheet,
-  FlatList,
   View,
   Text,
   TouchableOpacity,
+  FlatList,
+  Dimensions,
 } from "react-native";
 import CustomText from "../Titles/CustomTitle";
 import SliderRender from "./render/SliderRender";
@@ -11,6 +12,7 @@ import { DARCK__COLOR__TEME } from "../../../Constants/Colors";
 import { useNavigation } from "@react-navigation/native";
 import { useNavigationTypes } from "../../../types/types";
 import { useAnuncios } from "../../../Hook/anuncios/useAnuncios";
+import { FlashList } from "@shopify/flash-list";
 
 interface props {
   data: [
@@ -25,22 +27,20 @@ interface props {
 
   watching?: boolean;
 }
-const SLiderHorizontal = ({
-  data,
-
-  title,
-  watching = false,
-}: props) => {
+const SLiderHorizontal = ({ data, title, watching = false }: props) => {
   const navigate = useNavigation<useNavigationTypes>();
 
   const { interstitialLoaded, interstitial } = useAnuncios();
 
   const navigateAllScreen = async () => {
     if (interstitialLoaded) {
-      await interstitial.show();
+      interstitial.show();
     }
     await navigate.navigate(watching ? "lastWatching" : "all");
   };
+
+  const { width, height } = Dimensions.get('window');
+
 
   return (
     <>
@@ -50,7 +50,9 @@ const SLiderHorizontal = ({
           <Text style={styles.text}>ver mas</Text>
         </TouchableOpacity>
       </View>
-      <FlatList
+      <FlashList
+      estimatedListSize={ { height:220 ,  width: width }}
+      estimatedItemSize={300}
         showsHorizontalScrollIndicator={false}
         horizontal
         data={data}

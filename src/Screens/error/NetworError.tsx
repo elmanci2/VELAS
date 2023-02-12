@@ -26,10 +26,10 @@ const NetworError = () => {
         )}
       </View>
       <Text style={[styles.text, { color: dacrk }]}>
-        Oops No tienes conexión a interna, ❗ inténtalo más tarde
+        Oops No tienes conexión a internet, ❗ inténtalo más tarde
       </Text>
 
-      <TouchableOpacity onPress={() => refresh()}>
+      <TouchableOpacity onPress={() => null }>
         <Text
           style={[
             styles.reloadText,

@@ -5,12 +5,15 @@ import { useQuery } from "react-query";
 import MyScreens from "../Components/body/Screen";
 import VerticalSlider from "../Components/custom/Sliders/SliderVertical";
 import { FechingData } from "../Hook/FechingData";
+import LoadScreen from "./util/LoadScreen";
 
 // create a component
 const EpisodesScreen = () => {
   const { data, isError, isLoading, refetch } = useQuery(["episodes"], () =>
     FechingData("/episodesdb")
   );
+
+  if(isLoading)  <LoadScreen/>
 
   return (
     <MyScreens Styles={styles.container}>

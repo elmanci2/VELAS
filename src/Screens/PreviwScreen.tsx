@@ -23,6 +23,7 @@ import { FlatList } from "react-native-gesture-handler";
 import { useEffect, useState } from "react";
 import { useFocusEffect, useIsFocused } from "@react-navigation/native";
 import { useShare } from "../Hook/UseShare";
+import FastImage from "react-native-fast-image";
 
 interface props {
   route: any;
@@ -170,7 +171,7 @@ const PreviwScreen = ({ route, navigation }: props) => {
           <>
             <View style={styles.header}>
               <View style={styles.imagenConted}>
-                <Image style={styles.img} source={{ uri: poster }} />
+                <FastImage style={styles.img} source={{ uri: poster }} />
               </View>
               <LinearGradient
                 colors={["transparent", DarckGradien]}
