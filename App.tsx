@@ -9,6 +9,8 @@ import * as Network from "expo-network";
 import NetworError from "./src/Screens/error/NetworError";
 import { openConditios } from "./src/zustand/state/myStorage";
 import { TerminosAncoditionesHome } from "./src/Components/util/TerminosAndCondition";
+import { createTable } from "./src/db/db";
+import KeyScreen from "./src/Screens/util/key/KeyScreen";
 activateKeepAwake();
 
 export default function App() {
@@ -16,7 +18,7 @@ export default function App() {
   const { isDarck } = useDarckStorage((state) => state);
   const { isCondition } = openConditios();
 
-  const [isConnected, setIsConnected] = useState(false);
+  const [isConnected, setIsConnected] = useState(true);
 
   ///  check conection to internt
   const handleConnectivityChange = async () => {
@@ -26,11 +28,11 @@ export default function App() {
 
   useEffect(() => {
     handleConnectivityChange();
+    createTable();
   }, []);
 
   if (isConnected) {
-  
-  }else{
+  } else {
     return (
       <>
         <StatusBar style="auto" />

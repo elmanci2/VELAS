@@ -23,6 +23,7 @@ import VideoPLayerScreen from "../Screens/VideoPLayerScreen";
 import { useState } from "react";
 import { getFavorites } from "../db/db";
 import { LastWatching } from "../Screens/util/LastWatching";
+import KeyScreen from "../Screens/util/key/KeyScreen";
 
 /// stack navigation
 
@@ -30,7 +31,10 @@ const TransitionScreenOptions = {
   headerShown: false,
   gestureEnabled: false,
   presentation: "transparentModal",
+  
 };
+
+
 
 const Stack = createNativeStackNavigator();
 function MyStack() {
@@ -56,7 +60,8 @@ function MyStack() {
   };
 
   return (
-    <Stack.Navigator screenOptions={TransitionScreenOptions as any}>
+    <Stack.Navigator initialRouteName="key" screenOptions={TransitionScreenOptions as any}>
+      <Stack.Screen name='key' component={KeyScreen}   /> 
       <Stack.Screen name="Home" component={BottomTabs} />
       <Stack.Screen name="buscar" component={SearchScreen} />
       <Stack.Screen

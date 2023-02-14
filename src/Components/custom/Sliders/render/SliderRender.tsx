@@ -49,13 +49,15 @@ const SliderRender = ({
   const { interstitialLoaded, interstitial } = useAnuncios();
 
   const openAdds = async () => {
-    if (!interstitialLoaded) {
-    }
-    interstitial.show();
     navigation.navigate("previw", {
       id: item.id,
       poster: item.poster === notPoster ? BASE__IMG : item.poster,
-    });
+    }); 
+    
+    if (!interstitialLoaded) {
+    }
+    interstitial.show();
+  
   }; ///  navigato ad adds
 
   return (

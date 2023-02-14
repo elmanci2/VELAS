@@ -94,6 +94,7 @@ export default function SetingScreen() {
     }
   };
 
+  //// hellow  
   /// extrax seting
   const setingStrast = (id: number) => {
     switch (id) {
@@ -209,7 +210,7 @@ export default function SetingScreen() {
               color={isDarck ? DARCK__COLOR__TEME.SECONST : "black"}
             />
             <Text style={{ color: isDarck ? "white" : "black" }}>
-              App version 1.3.0
+              App version 1.0.9
             </Text>
           </View>
 

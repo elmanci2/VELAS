@@ -5,6 +5,7 @@ import {
   TouchableOpacity,
   FlatList,
   Dimensions,
+  ViewStyle,
 } from "react-native";
 import CustomText from "../Titles/CustomTitle";
 import SliderRender from "./render/SliderRender";
@@ -22,12 +23,17 @@ interface props {
       title: string;
     }
   ];
-
   title: string;
-
   watching?: boolean;
+  imgStyles?: ViewStyle;
 }
-const SLiderHorizontal = ({ data, title, watching = false }: props) => {
+
+const SLiderHorizontal = ({
+  data,
+  title,
+  watching = false,
+  imgStyles,
+}: props) => {
   const navigate = useNavigation<useNavigationTypes>();
 
   const { interstitialLoaded, interstitial } = useAnuncios();
@@ -39,8 +45,7 @@ const SLiderHorizontal = ({ data, title, watching = false }: props) => {
     await navigate.navigate(watching ? "lastWatching" : "all");
   };
 
-  const { width, height } = Dimensions.get('window');
-
+  const { width, height } = Dimensions.get("window");
 
   return (
     <>
@@ -51,13 +56,13 @@ const SLiderHorizontal = ({ data, title, watching = false }: props) => {
         </TouchableOpacity>
       </View>
       <FlashList
-      estimatedListSize={ { height:220 ,  width: width }}
-      estimatedItemSize={300}
+        estimatedListSize={{ height: 220, width: width }}
+        estimatedItemSize={300}
         showsHorizontalScrollIndicator={false}
         horizontal
         data={data}
         renderItem={({ item, index }) => (
-          <SliderRender StylesIMgConted={styles.imgCotainer} item={item} />
+          <SliderRender StylesIMgConted={imgStyles} item={item} />
         )}
       />
     </>
@@ -66,12 +71,6 @@ const SLiderHorizontal = ({ data, title, watching = false }: props) => {
 
 // define your styles
 const styles = StyleSheet.create({
-  imgCotainer: {
-    width: 113,
-    height: 170,
-    margin: 0,
-  },
-
   CustomText: {
     textTransform: "capitalize",
   },

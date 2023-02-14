@@ -61,6 +61,15 @@ const HomeScreen = () => {
         name: "Recién actualizadas",
         data: data ? data[5]?.generos6 ?? [] : [],
       },
+      {
+        name: "Novelas más vistas hoy",
+        data: data ? data[6]?.generos7 ?? [] : [],
+      },
+
+      {
+        name: "Historias inolvidables",
+        data: data ? data[7]?.generos8 ?? [] : [],
+      },
     ];
   }, [data]);
 
@@ -77,8 +86,6 @@ const HomeScreen = () => {
     return null;
   }, []);
 
-
-  
   /// load componet
   const isLoading = emicionLoading || dataLoading;
   if (isLoading) return <LoadScreen />;

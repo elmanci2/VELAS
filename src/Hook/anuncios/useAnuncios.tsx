@@ -7,8 +7,7 @@ import {
 } from "react-native-google-mobile-ads";
 import { INTERSTITIAL_ID, REWARDED_ID } from "../../Constants/ads";
 
-
- //// initialize    adds 
+//// initialize    adds
 const interstitial = InterstitialAd.createForAdRequest(INTERSTITIAL_ID, {
   requestNonPersonalizedAdsOnly: true,
 });

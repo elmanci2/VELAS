@@ -18,7 +18,7 @@ export const createTable = () => {
   /// LAS  WATCHING
   dq.transaction((tx) => {
     tx.executeSql(
-      "CREATE TABLE IF NOT EXISTS  watching (id  TEXT UNIQUE, name TEXT ,  poster TEXT);",
+      "CREATE TABLE IF NOT EXISTS  watching (id  TEXT UNIQUE, title TEXT ,  poster TEXT);",
       [],
       (_, result) => {}
     );
@@ -140,15 +140,18 @@ export const getTime = (name: string) => {
 
 /// continua washing
 
-export const saveWatching = (item: {
+type lastWashing = {
   id: string;
-  name: string;
+  title: string;
   poster: string;
-}) => {
+};
+
+/// fuction las watching 
+export const saveWatching = (item: lastWashing) => {
   dq.transaction((tx) => {
     tx.executeSql(
-      "INSERT OR REPLACE INTO watching (id , name, poster) VALUES (?, ? ,?);",
-      [item.id, item.name, item.poster],
+      "INSERT OR REPLACE INTO watching (id , title, poster) VALUES (?, ? ,?);",
+      [item.id, item.title, item.poster],
       (_, result) => {}
     );
   });
@@ -157,10 +160,8 @@ export const saveWatching = (item: {
 export const getWatchig = () => {
   return new Promise((resolve, reject) => {
     dq.transaction((tx) => {
-      tx.executeSql(
-        "SELECT * FROM watching",
-        [],
-        (_, { rows: { _array } }) => resolve(_array)
+      tx.executeSql("SELECT * FROM watching", [], (_, { rows: { _array } }) =>
+        resolve(_array)
       );
     });
   });

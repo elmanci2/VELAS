@@ -2,9 +2,8 @@
   "expo": {
     "name": "vela novelas",
     "slug": "velanovelasv2",
-    "version": "1.0.2",
+    "version": "1.0.9",
     "orientation": "portrait",
-    "versionCode": 3,
     "icon": "./assets/icono.png",
     "userInterfaceStyle": "light",
     "splash": {
@@ -16,14 +15,16 @@
       "**/*"
     ],
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "bundleIdentifier": "com.elmanci.velanovelasv2"
     },
     "android": {
       "adaptiveIcon": {
         "foregroundImage": "./assets/icono.png",
         "backgroundColor": "#FFFFFF"
       },
-      "package": "com.elmanci.velanovelasv2"
+      "package": "com.elmanci.velanovelasv2",
+      "versionCode": 4
     },
     "web": {
       "favicon": "./assets/vela/logo.png"
