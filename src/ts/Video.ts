@@ -54,7 +54,6 @@ export const use__get__Video__Player = (id: string) => {
       setvideo(link);
       setLoading(false);
 
-      
     }
   };
 

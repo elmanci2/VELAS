@@ -38,7 +38,7 @@
       "url": "https://u.expo.dev/fa0d0168-3d18-437d-a156-332d0dca6687"
     },
     "runtimeVersion": {
-      "policy": "appVersion"
+      "policy": "sdkVersion"
     }
   },
   "react-native-google-mobile-ads": {

@@ -8,12 +8,12 @@ import {
 import { INTERSTITIAL_ID, REWARDED_ID } from "../../Constants/ads";
 
 //// initialize    adds
-const interstitial = InterstitialAd.createForAdRequest(INTERSTITIAL_ID, {
+const interstitial = InterstitialAd.createForAdRequest('INTERSTITIAL_ID', {
   requestNonPersonalizedAdsOnly: true,
 });
 
 const rewardedInterstitial = RewardedInterstitialAd.createForAdRequest(
-  REWARDED_ID,
+  'REWARDED_ID',
   {
     requestNonPersonalizedAdsOnly: true,
   }

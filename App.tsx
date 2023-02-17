@@ -10,7 +10,7 @@ import NetworError from "./src/Screens/error/NetworError";
 import { openConditios } from "./src/zustand/state/myStorage";
 import { TerminosAncoditionesHome } from "./src/Components/util/TerminosAndCondition";
 import { createTable } from "./src/db/db";
-import KeyScreen from "./src/Screens/util/key/KeyScreen";
+
 activateKeepAwake();
 
 export default function App() {
