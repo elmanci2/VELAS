@@ -7,7 +7,7 @@ export const BannerAds = () => {
   return (
     <View style={styles.banner}>
       <BannerAd
-        unitId={'BANNER_ID'}
+        unitId={BANNER_ID}
         size={BannerAdSize.LARGE_BANNER}
         requestOptions={{
           requestNonPersonalizedAdsOnly: true,

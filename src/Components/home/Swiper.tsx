@@ -8,7 +8,6 @@ import {
   TouchableOpacity,
   Image,
 } from "react-native";
-import FastImage from "react-native-fast-image";
 import { SwiperFlatList } from "react-native-swiper-flatlist";
 import { DARCK__COLOR__TEME } from "../../Constants/Colors";
 import { useAnuncios } from "../../Hook/anuncios/useAnuncios";
@@ -56,7 +55,7 @@ const Swiper = ({ data }: props) => {
             }
             style={[styles.child, { backgroundColor: item }]}
           >
-            <FastImage style={{ flex: 1 }} source={{ uri: item.banner }} />
+            <Image style={{ flex: 1 }} source={{ uri: item.banner }} />
             <Text numberOfLines={1} style={styles.text}>
               {item.title}
             </Text>

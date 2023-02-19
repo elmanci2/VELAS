@@ -13,7 +13,7 @@ import { useState } from "react";
 import { useFocusEffect, useNavigation } from "@react-navigation/native";
 import { fetchLastEpisode, insertLastEpisode, saveWatching } from "../../db/db";
 import { BannerAds } from "../../Hook/anuncios/BannerAds";
-import FastImage from "react-native-fast-image";
+
 
 // create a component
 
@@ -49,7 +49,7 @@ const EpisodesLIstPreviw = ({
   useFocusEffect(() => {
     fetchLastEpisode(data.id).then((episode: any) => {
       setContinua && setContinua(episode[0]?.last_episode ?? 0);
-      setViewEpisodes(episode[0]?.last_episode ?? null );
+      setViewEpisodes(episode[0]?.last_episode ?? null);
       ///   add whashin g
     });
   });
@@ -61,17 +61,16 @@ const EpisodesLIstPreviw = ({
       style={styles.epContainer}
     >
       <View style={styles.epImgCOnted}>
-        <FastImage
+        <Image
           style={styles.img}
           source={{
             uri: item?.poster ?? "",
-            priority: FastImage.priority.high,
           }}
         />
 
         <View style={styles.iconEpisodesBox}>
           <FontAwesome name="play-circle" size={34} color="white" />
-          {ViewEpisodes >= index  ? <View style={styles.episodesBufer} /> : null}
+          {ViewEpisodes >= index ? <View style={styles.episodesBufer} /> : null}
         </View>
       </View>
       <View style={{ width: "50%", flexDirection: "row" }}>

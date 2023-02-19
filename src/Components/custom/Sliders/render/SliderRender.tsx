@@ -9,7 +9,6 @@ import {
   ViewStyle,
   TextStyle,
 } from "react-native";
-import FastImage from "react-native-fast-image";
 import {
   DARCK__COLOR__TEME,
   LING__COLOR__TEME,
@@ -52,27 +51,25 @@ const SliderRender = ({
     navigation.navigate("previw", {
       id: item.id,
       poster: item.poster === notPoster ? BASE__IMG : item.poster,
-    }); 
-    
+    });
+
     if (!interstitialLoaded) {
     }
     interstitial.show();
-  
+
   }; ///  navigato ad adds
 
   return (
     <TouchableOpacity
-    key={item.id}
+      key={item.id}
       onPress={openAdds}
       style={[styles.ContainerAnime, StylesContainer]}
     >
       <View style={[styles.imagenContainer, StylesIMgConted]}>
-        <FastImage
+        <Image
           style={styles.img}
           source={{
-            uri: item.poster === notPoster ? BASE__IMG : item.poster,
-            priority: FastImage.priority.high
-           
+            uri: item.poster === notPoster ? BASE__IMG : item.poster
           }}
         />
       </View>
@@ -80,7 +77,7 @@ const SliderRender = ({
         numberOfLines={2}
         style={[styles.name, { color: mode }, StylesText]}
       >
-        {item?.title ?? '  '  }
+        {item?.title ?? '  '}
       </Text>
     </TouchableOpacity>
   );
@@ -107,8 +104,8 @@ const styles = StyleSheet.create({
   imagenContainer: {
     width: "100%",
     height: 178,
-    backgroundColor:"gray",
-    borderRadius:7 
+    backgroundColor: "gray",
+    borderRadius: 7
   },
   img: {
     width: "100%",

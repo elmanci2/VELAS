@@ -210,7 +210,7 @@ export default function SetingScreen() {
               color={isDarck ? DARCK__COLOR__TEME.SECONST : "black"}
             />
             <Text style={{ color: isDarck ? "white" : "black" }}>
-              App version 1.1.0
+              App version 1.1.1
             </Text>
           </View>
 
